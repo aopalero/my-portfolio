@@ -2,33 +2,74 @@
 import Image from "next/image";
 import { useState, useEffect, type FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formMessage, setFormMessage] = useState("");
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "your@email.com";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStart, setFormStart] = useState<number | null>(null);
 
   const closeContactModal = () => setIsModalOpen(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = `New inquiry from ${formName || "Website Visitor"}`;
-    const body = [
-      `Name: ${formName || "(not provided)"}`,
-      `Email: ${formEmail || "(not provided)"}`,
-      "",
-      "Message:",
-      formMessage || "(no message)",
-    ].join("\n");
-    const href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-    setIsModalOpen(false);
-    setFormName("");
-    setFormEmail("");
-    setFormMessage("");
+    // Optional: compose additional metadata for future use
+
+    // Send via Next.js API route (proxies to Supabase Edge Function)
+    try {
+      setIsSubmitting(true);
+      const loadingId = toast.loading("Sending your message...");
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          message: formMessage,
+          hp: (document.querySelector('input[name="company"]') as HTMLInputElement | null)?.value || "",
+          startedAt: formStart || Date.now(),
+        }),
+      });
+      if (!res.ok) {
+        const errorJson: unknown = await res.json().catch(() => ({} as unknown));
+        toast.dismiss(loadingId);
+        const msg = extractErrorMessage(errorJson);
+        throw new Error(msg || "Failed to send message");
+      }
+      toast.dismiss();
+      toast.success("Message sent! I’ll get back to you within 24 hours.");
+      setIsModalOpen(false);
+      setFormName("");
+      setFormEmail("");
+      setFormMessage("");
+    } catch (err) {
+      toast.error(
+        `Unable to send message. ${err instanceof Error ? err.message : "Please try again later."}`
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  function extractErrorMessage(value: unknown): string | undefined {
+    if (
+      typeof value === "object" &&
+      value !== null &&
+      "error" in (value as Record<string, unknown>)
+    ) {
+      const err = (value as Record<string, unknown>).error;
+      if (typeof err === "string") return err;
+      try {
+        return JSON.stringify(err);
+      } catch {
+        return undefined;
+      }
+    }
+    return undefined;
+  }
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -54,7 +95,7 @@ export default function Home() {
           </nav>
           <a
             href="#contact"
-            onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
+            onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
             className="inline-flex items-center rounded-full bg-[#FF7900] px-4 py-2 text-white text-sm font-medium shadow-sm hover:bg-[#e66d00] transition"
           >
             Work With Me
@@ -82,7 +123,7 @@ export default function Home() {
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
+                onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
                 className="inline-flex items-center justify-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium shadow-sm transition transform hover:bg-[#e66d00] hover:scale-[1.02]"
               >
                 Let’s Build Together
@@ -194,7 +235,7 @@ export default function Home() {
           <div className="mt-12 text-center">
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
+              onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
               className="inline-flex items-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium hover:bg-[#e66d00]"
             >
               See How I Can Help You
@@ -226,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-16 md:py-24">
+      <section id="about" className="py-16 md:py-24 scroll-mt-12 md:scroll-mt-14">
         <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-10 items-center">
           <div className="relative rounded-full overflow-hidden w-[300px] h-[300px] md:w-[380px] md:h-[530px] place-self-center md:place-self-start shadow-lg bg-[#FF7900] mr-0 md:mr-38">
               <Image
@@ -253,7 +294,7 @@ export default function Home() {
             </div>
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
+              onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
               className="mt-8 flex w-fit mx-auto md:mx-0 items-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium hover:bg-[#e66d00]"
             >
               Work With Me
@@ -321,6 +362,11 @@ export default function Home() {
                   placeholder="Juan Dela Cruz"
                 />
               </div>
+              {/* Honeypot field - hidden from real users */}
+              <div className="hidden" aria-hidden="true">
+                <label>Leave this field empty</label>
+                <input type="text" name="company" autoComplete="off" tabIndex={-1} />
+              </div>
               <div>
                 <label className="block text-sm font-medium text-black/80">Your Email</label>
                 <input
@@ -352,12 +398,13 @@ export default function Home() {
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center rounded-full bg-[#FF7900] px-6 py-2 text-white text-sm font-medium shadow-sm hover:bg-[#e66d00]"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center rounded-full bg-[#FF7900] px-6 py-2 text-white text-sm font-medium shadow-sm hover:bg-[#e66d00] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send via Email
+                  {isSubmitting ? "Sending..." : "Send"}
                 </button>
               </div>
-              <p className="text-[11px] text-black/50">This uses your email client via mailto to send to <span className="font-medium">{contactEmail}</span>.</p>
+              <p className="text-[11px] text-black/50">Your message is securely sent via Supabase.</p>
             </form>
           </div>
         </div>
