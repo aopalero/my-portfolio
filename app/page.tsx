@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect, type FormEvent } from "react";
-import { CheckCircle2 } from "lucide-react";
+
 import { toast } from "sonner";
 
 export default function Home() {
@@ -81,24 +81,28 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-black/[.06]">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-black/[.08] shadow-sm">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <a href="#home" className="flex items-center text-2xl font-semibold">
+          <a href="#home" className="flex items-center text-2xl font-bold tracking-tight hover:scale-105 transition-transform">
             <span className="text-[#FF7900]">ao</span>
             <span className="text-black">palero</span>
           </a>
-          <nav className="hidden md:flex items-center gap-12 text-sm text-black/70">
-            <a href="#about" className="hover:text-black">About</a>
-            <a href="#projects" className="hover:text-black">Projects</a>
-            <a href="#skills" className="hover:text-black">Skills</a>
-            <a href="#contact" className="hover:text-black">Contact</a>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-black/70">
+            <a href="#home" className="hover:text-[#FF7900] transition-colors">Home</a>
+            <a href="#about" className="hover:text-[#FF7900] transition-colors">About</a>
+            <a href="#projects" className="hover:text-[#FF7900] transition-colors">Projects</a>
+            <a href="#skills" className="hover:text-[#FF7900] transition-colors">Skills</a>
+            <a href="#contact" className="hover:text-[#FF7900] transition-colors">Contact</a>
           </nav>
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
-            className="inline-flex items-center rounded-full bg-[#FF7900] px-4 py-2 text-white text-sm font-medium shadow-sm hover:bg-[#e66d00] transition"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FF7900] px-6 py-2.5 text-white text-sm font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 hover:scale-105"
           >
             Work With Me
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
         </div>
       </header>
@@ -107,14 +111,22 @@ export default function Home() {
       <section id="home" className="w-full scroll-mt-24 md:scroll-mt-28">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
           <div className="w-full max-w-2xl mx-auto text-center md:text-left order-2 md:order-1">
-            <p className="text-black/70 text-lg">Full-stack Web Developer</p>
-            <h1 className="mt-4 text-4xl md:text-6xl md:w-[600px] font-bold tracking-tight">
-              I Build <span className="text-[#FF7900]">Scalable</span> Web
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
+              <span className="w-2 h-2 bg-[#FF7900] rounded-full animate-pulse"></span>
+              Full-stack Web Developer
+            </div>
+            <h1 className="text-4xl md:text-6xl md:w-[600px] font-bold tracking-tight leading-[1.1]">
+              I Build <span className="text-[#FF7900] relative">
+                Scalable
+                <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF7900] to-[#e66d00] rounded-full"></div>
+              </span> Web
               Applications That
               <br className="hidden md:block" />
-              <span className="text-[#FF7900]"> Solve</span> Real Problems.
+              <span className="text-[#FF7900] relative"> Solve
+                <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF7900] to-[#e66d00] rounded-full"></div>
+              </span> Real Problems.
             </h1>
-            <p className="mt-6 text-black/60 max-w-xl">
+            <p className="mt-6 text-lg text-black/70 max-w-xl leading-relaxed">
               From schools and organizations to businesses and personal projects, I
               deliver end-to-end solutions — frontend, backend, and everything in
               between. No need to hire multiple developers. With me, you get it
@@ -124,31 +136,39 @@ export default function Home() {
               <a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
-                className="inline-flex items-center justify-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium shadow-sm transition transform hover:bg-[#e66d00] hover:scale-[1.02]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#FF7900] px-8 py-4 text-white font-semibold shadow-lg transition-all duration-200 hover:bg-[#e66d00] hover:shadow-xl hover:scale-105"
               >
-                Let’s Build Together
+                Let&rsquo;s Build Together
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-full border border-[#FF7900] text-[#FF7900] px-6 py-3 font-medium hover:bg-[#fff5ee]"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#FF7900] text-[#FF7900] px-8 py-4 font-semibold hover:bg-[#FF7900] hover:text-white transition-all duration-200 hover:scale-105"
               >
                 View My Projects
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
               </a>
             </div>
             <div className="mt-8 sm:mt-12 flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 opacity-80">
-              <Image src="/assets/zap.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
-              <Image src="/assets/tesda.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
-              <Image src="/assets/bpc.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
-              <Image src="/assets/dswd.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
+              <Image src="/assets/zap.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
+              <Image src="/assets/tesda.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
+              <Image src="/assets/bpc.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
+              <Image src="/assets/dswd.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
             </div>
           </div>
 
-           <div className="relative rounded-full overflow-hidden w-[320px] h-[320px] md:w-[420px] md:h-[600px] place-self-center md:place-self-end shadow-lg bg-[#FF7900] order-1 md:order-2">
+           <div className="relative rounded-3xl overflow-hidden rounded-full w-[320px] h-[400px] md:w-[420px] md:h-[600px] place-self-center md:place-self-end shadow-2xl bg-gradient-to-br from-[#FF7900] to-[#e66d00] order-1 md:order-2 hover:scale-105 transition-transform duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
               <Image
                 src="/assets/me.png"
-                alt="Portrait"
+                alt="Abel Palero - Full-stack Web Developer"
                 fill
-                className="object-cover"
+                className="object-cover z-0"
                 priority
               />
             </div>
@@ -156,25 +176,59 @@ export default function Home() {
       </section>
 
       {/* USP */}
-      <section className="bg-[#ffe9d6] py-16 md:py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold">
-            Why Struggle With Multiple Developers When One Expert Can Handle It All?
+      <section className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
+                              radial-gradient(circle at 80% 20%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
+                              radial-gradient(circle at 40% 80%, rgba(255, 121, 0, 0.1) 0%, transparent 50%)`
+          }}></div>
+        </div>
+        <div className="mx-auto max-w-5xl px-6 text-center relative">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+            </svg>
+            Why Choose One Expert Over Many?
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            Why Struggle With Multiple Developers<br />
+            <span className="text-[#FF7900]">When One Expert Can Handle It All?</span>
           </h2>
-          <p className="mt-4 text-black/70 max-w-3xl mx-auto">
+          <p className="mt-6 text-lg text-black/70 max-w-3xl mx-auto leading-relaxed">
             Hiring separate frontend and backend developers is expensive, time-consuming, and frustrating.
             I handle your project end-to-end — from UI design to database architecture.
           </p>
 
-          <div className="mt-10 grid sm:grid-cols-2 gap-6 text-left">
-            {["End-to-End Development: One developer, complete solution.",
-              "Adaptable Experience: From government to schools to personal projects.",
-              "Modern Tech Stack: Next.js, Vue.js, Laravel, Supabase, TailwindCSS.",
-              "Scalable & Reliable: Code built to grow with your needs."]
-              .map((text) => (
-                <div key={text} className="flex items-start gap-3">
-                  <CheckCircle2 className="text-[#FF7900] mt-1" />
-                  <p className="text-black/80">{text}</p>
+          <div className="mt-12 grid sm:grid-cols-2 gap-8 text-left">
+            {[
+              {
+                title: "End-to-End Development",
+                desc: "One developer, complete solution.",
+                icon: "⚡"
+              },
+              {
+                title: "Adaptable Experience", 
+                desc: "From government to schools to personal projects.",
+                icon: "🎯"
+              },
+              {
+                title: "Modern Tech Stack",
+                desc: "Next.js, Vue.js, Laravel, Supabase, TailwindCSS.",
+                icon: "🚀"
+              },
+              {
+                title: "Scalable & Reliable",
+                desc: "Code built to grow with your needs.",
+                icon: "📈"
+              }
+            ].map((item) => (
+                <div key={item.title} className="flex items-start gap-4 p-6 bg-white/60 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-white/40">
+                  <div className="text-2xl">{item.icon}</div>
+                  <div>
+                    <h3 className="font-semibold text-black/90 mb-1">{item.title}</h3>
+                    <p className="text-black/70 text-sm">{item.desc}</p>
+                  </div>
                 </div>
               ))}
           </div>
@@ -182,9 +236,12 @@ export default function Home() {
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
-            className="mt-10 inline-flex items-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium hover:bg-[#e66d00]"
+            className="mt-12 inline-flex items-center gap-2 rounded-full bg-[#FF7900] px-8 py-4 text-white font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 hover:scale-105"
           >
             Work With Me
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
         </div>
       </section>
@@ -192,84 +249,174 @@ export default function Home() {
       {/* Projects */}
       <section id="projects" className="py-16 md:py-24 scroll-mt-12 md:scroll-mt-14">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center">
-            Solutions I’ve Built — Tailored for Real People, Real Problems
-          </h2>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-10 items-center">
-            <div className="rounded-xl overflow-hidden shadow-sm border">
-              <Image
-                src="/assets/haosrai.png"
-                alt="School website"
-                width={1200}
-                height={800}
-                className="w-full h-64 object-cover"
-              />
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1V8z" clipRule="evenodd" />
+              </svg>
+              Featured Projects
             </div>
-            <div>
-              <h3 className="text-xl font-semibold">HAOSRAI</h3>
-              <p className="mt-4 text-black/70"><span className="font-semibold">Challenge:</span> The school needed a modern website to showcase its programs and admissions.</p>
-              <p className="mt-2 text-black/70"><span className="font-semibold">Solution:</span> Designed and developed a clean, scalable platform with Next.js + Supabase.</p>
-              <p className="mt-2 text-black/70"><span className="font-semibold">Result:</span> A professional online presence that attracts students and parents.</p>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              Solutions I&rsquo;ve Built —<br />
+              <span className="text-[#FF7900]">Tailored for Real People, Real Problems</span>
+            </h2>
+          </div>
+
+          <div className="space-y-20">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              <div className="group relative rounded-2xl overflow-hidden shadow-lg border hover:shadow-2xl transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF7900]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <Image
+                  src="/assets/haosrai.png"
+                  alt="HAOSRAI School Website"
+                  width={1200}
+                  height={800}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 rounded-full text-sm font-semibold text-[#FF7900]">
+                  Educational
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-black/90 mb-2">HAOSRAI</h3>
+                  <p className="text-[#FF7900] font-semibold text-sm mb-4">School Website</p>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <p className="text-black/70"><span className="font-semibold">Challenge:</span> The school needed a modern website to showcase its programs and admissions.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <p className="text-black/70"><span className="font-semibold">Solution:</span> Designed and developed a clean, scalable platform with Next.js + Supabase.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <p className="text-black/70"><span className="font-semibold">Result:</span> A professional online presence that attracts students and parents.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-10 items-center md:[&>*:first-child]:order-2">
+              <div className="group relative rounded-2xl overflow-hidden shadow-lg border hover:shadow-2xl transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF7900]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <Image
+                  src="/assets/verjann.png"
+                  alt="Verj & Ann Wedding Website"
+                  width={1200}
+                  height={800}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 rounded-full text-sm font-semibold text-[#FF7900]">
+                  Personal
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-black/90 mb-2">Verj & Ann Wedding Website</h3>
+                  <p className="text-[#FF7900] font-semibold text-sm mb-4">Wedding Site</p>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <p className="text-black/70"><span className="font-semibold">Challenge:</span> The couple wanted a stylish, interactive digital invitation.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <p className="text-black/70"><span className="font-semibold">Solution:</span> Custom wedding site with RSVP, countdown, and guest info.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <p className="text-black/70"><span className="font-semibold">Result:</span> Guests had a smooth, engaging experience — all in one place.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-10 items-center md:[&>*:first-child]:order-2">
-            <div className="rounded-xl overflow-hidden shadow-sm border">
-              <Image
-                src="/assets/verjann.png"
-                alt="Wedding site"
-                width={1200}
-                height={800}
-                className="w-full h-64 object-cover"
-              />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold">Verj & Ann Wedding Website</h3>
-              <p className="mt-4 text-black/70"><span className="font-semibold">Challenge:</span> The couple wanted a stylish, interactive digital invitation.</p>
-              <p className="mt-2 text-black/70"><span className="font-semibold">Solution:</span> Custom wedding site with RSVP, countdown, and guest info.</p>
-              <p className="mt-2 text-black/70"><span className="font-semibold">Result:</span> Guests had a smooth, engaging experience — all in one place.</p>
-            </div>
-          </div>
-
-          <div className="mt-12 text-center">
+          <div className="mt-16 text-center">
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
-              className="inline-flex items-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium hover:bg-[#e66d00]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7900] px-8 py-4 text-white font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 hover:scale-105"
             >
               See How I Can Help You
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </a>
           </div>
         </div>
       </section>
 
       {/* Skills */}
-      <section id="skills" className="bg-[#ffe9d6] py-14 scroll-mt-24 md:scroll-mt-28">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold">The Tools I Use to Build Your Future-Ready Web App</h2>
-          <p className="mt-2 text-black/60">I build scalable solutions using modern technologies trusted by startups, schools, and enterprises.</p>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-6 gap-6">
+      <section id="skills" className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-24 scroll-mt-14 md:scroll-mt-18 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 30% 20%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
+                              radial-gradient(circle at 70% 70%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
+                              radial-gradient(circle at 10% 80%, rgba(255, 121, 0, 0.1) 0%, transparent 50%)`
+          }}></div>
+        </div>
+        <div className="mx-auto max-w-5xl px-6 text-center relative">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+            Tech Stack
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">The Tools I Use to Build Your<br />
+            <span className="text-[#FF7900]">Future-Ready Web App</span>
+          </h2>
+          <p className="mt-6 text-lg text-black/70 max-w-2xl mx-auto">I build scalable solutions using modern technologies trusted by startups, schools, and enterprises.</p>
+          
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              "Next.js",
-              "Vue.js",
-              "Laravel",
-              "TailwindCSS",
-              "Shadcn",
-              "Supabase",
-            ].map((name) => (
-              <div key={name} className="rounded-xl border bg-white py-8 text-sm font-semibold shadow-sm hover:shadow-md transition">
-                {name}
+              { name: "Next.js", image: "/assets/nextjs.png", category: "Frontend" },
+              { name: "Vue.js", image: "/assets/vuejs.png", category: "Frontend" },
+              { name: "Laravel", image: "/assets/laravel.png", category: "Backend" },
+              { name: "TailwindCSS", image: "/assets/tailwind.png", category: "Styling" },
+              { name: "Shadcn", image: "/assets/shadcn.png", category: "UI Components" },
+              { name: "Supabase", image: "/assets/supabase.png", category: "Database" },
+            ].map((tech) => (
+              <div key={tech.name} className="group relative rounded-2xl border bg-white/60 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white border-white/40">
+                <div className="text-3xl mb-3 text-center group-hover:scale-110 transition-transform"><Image src={tech.image} alt={tech.name} width={40} height={40} className="object-contain mx-auto"/></div>
+                <h3 className="font-bold text-black/90 mb-1">{tech.name}</h3>
+                <p className="text-xs text-[#FF7900] font-semibold">{tech.category}</p>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FF7900]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 p-8 bg-white/60 rounded-2xl border border-white/40 max-w-4xl mx-auto">
+            <h3 className="text-lg md:text-xl font-bold text-black/90 mb-4 text-left md:text-center">Why These Technologies?</h3>
+            <div className="grid md:grid-cols-3 gap-6 text-left">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-2 h-2 bg-[#FF7900] rounded-full"></span>
+                  <span className="font-semibold text-sm">Performance</span>
+                </div>
+                <p className="text-sm text-black/70">Optimized for speed and scalability</p>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-2 h-2 bg-[#FF7900] rounded-full"></span>
+                  <span className="font-semibold text-sm">Modern</span>
+                </div>
+                <p className="text-sm text-black/70">Latest industry best practice standards</p>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-2 h-2 bg-[#FF7900] rounded-full"></span>
+                  <span className="font-semibold text-sm">Reliable</span>
+                </div>
+                <p className="text-sm text-black/70">Battle-tested by millions of applications</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* About */}
       <section id="about" className="py-16 md:py-24 scroll-mt-12 md:scroll-mt-14">
-        <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-10 items-center">
-          <div className="relative rounded-full overflow-hidden w-[300px] h-[300px] md:w-[380px] md:h-[530px] place-self-center md:place-self-start shadow-lg bg-[#FF7900] mr-0 md:mr-38">
+        <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 items-center">
+          <div className="relative rounded-full overflow-hidden w-[300px] h-[400px] md:w-[380px] md:h-[530px] place-self-center md:place-self-start shadow-lg bg-[#FF7900]">
               <Image
                 src="/assets/me.png"
                 alt="Portrait"
@@ -277,7 +424,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="w-full max-w-2xl md:justify-self-end mx-auto text-left">
+            <div className="w-full max-w-2xl md:justify-self-end mx-auto text-left mt-10 md:mt-0">
             <h2 className="text-3xl md:text-4xl font-semibold">Meet Abel, Your Full-Stack Partner</h2>
             <p className="mt-10 text-black/70 font-semibold">Hi, I’m Abel</p>
             <p className="mt-2 text-black/70">
@@ -286,19 +433,24 @@ export default function Home() {
             <p className="mt-2 text-black/70">
               Whether you need a modern school website, a business app, or a custom digital solution, I’ll be your one-stop partner — from concept to launch.
             </p>
-            <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 opacity-80">
-              <Image src="/assets/zap.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
-              <Image src="/assets/tesda.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
-              <Image src="/assets/bpc.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
-              <Image src="/assets/dswd.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-20 md:h-20" />
+            <div className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 opacity-80">
+              <Image src="/assets/zap.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
+              <Image src="/assets/tesda.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
+              <Image src="/assets/bpc.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
+              <Image src="/assets/dswd.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
             </div>
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
-              className="mt-8 flex w-fit mx-auto md:mx-0 items-center rounded-full bg-[#FF7900] px-6 py-3 text-white font-medium hover:bg-[#e66d00]"
-            >
-              Work With Me
-            </a>
+            <div className="mt-2 text-center md:text-left">
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
+                className="mt-12 inline-flex items-center gap-2 rounded-full bg-[#FF7900] px-8 py-4 text-white font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 hover:scale-105"
+              >
+                Work With Me
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
             </div>
         </div>
       </section>
@@ -309,13 +461,16 @@ export default function Home() {
         <h2 className="text-3xl md:text-4xl font-semibold">Let’s Build Something Great Together</h2>
           <p className="mt-2 opacity-90 max-w-2xl mx-auto">If you’re ready to bring your digital idea to life, I’d love to hear from you. Reach out and I’ll personally respond within 24 hours.</p>
           <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
-              className="inline-flex items-center justify-center rounded-full bg-white/95 text-[#FF7900] px-6 py-3 font-medium hover:bg-white"
-            >
-              Send Me an Email
-            </a>
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
+            className="mt-12 inline-flex items-center gap-2 rounded-full bg-[#FFFFFF] px-8 py-4 text-[#FF7900] font-semibold shadow-lg hover:bg-[#FF7900] hover:shadow-xl transition-all hover:text-white hover:border-white hover:border-2 duration-200 hover:scale-105"
+          >
+            Send Me an Email
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
           </div>
         </div>
       </section>
