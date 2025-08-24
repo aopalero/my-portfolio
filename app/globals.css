@@ -116,6 +116,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -125,3 +128,39 @@
 .brand-orange { color: #FF7900; }
 .bg-brand-orange { background-color: #FF7900; }
 .hover\:bg-brand-orange-dark:hover { background-color: #e66d00; }
+
+/* Mobile scroll margin adjustments */
+@media (max-width: 768px) {
+  #home { scroll-margin-top: 80px; }
+  #about { scroll-margin-top: 80px; }
+  #projects { scroll-margin-top: 80px; }
+  #skills { scroll-margin-top: 80px; }
+  #contact { scroll-margin-top: 80px; }
+}
+
+/* iPad Air 5 (820x1180) specific responsive design */
+@media (min-width: 820px) and (max-width: 1023px) {
+  .ipad-hero-text {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+  
+  .ipad-hero-image {
+    width: 320px;
+    height: 400px;
+  }
+  
+  .ipad-section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .ipad-grid-gap {
+    gap: 1.5rem;
+  }
+  
+  .ipad-text-size {
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+}

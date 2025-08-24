@@ -6,6 +6,7 @@ import { toast } from "sonner";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formMessage, setFormMessage] = useState("");
@@ -13,6 +14,8 @@ export default function Home() {
   const [formStart, setFormStart] = useState<number | null>(null);
 
   const closeContactModal = () => setIsModalOpen(false);
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,31 +76,78 @@ export default function Home() {
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeContactModal();
+      if (e.key === "Escape") {
+        closeContactModal();
+        closeMobileMenu();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  // Close mobile menu when clicking on navigation links
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Close mobile menu first
+        closeMobileMenu();
+        
+        // Get the header height for accurate offset calculation
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        
+        // Calculate the target position with proper offset
+        const targetPosition = targetElement.offsetTop - headerHeight - 20; // 20px additional buffer
+        
+        // Use window.scrollTo for more precise control on mobile
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-black/[.08] shadow-sm">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <a href="#home" className="flex items-center text-2xl font-bold tracking-tight hover:scale-105 transition-transform">
+          <a href="#home" onClick={handleNavLinkClick} className="flex items-center text-2xl font-bold tracking-tight hover:scale-105 transition-transform">
             <span className="text-[#FF7900]">ao</span>
             <span className="text-black">palero</span>
           </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-black/70">
-            <a href="#home" className="hover:text-[#FF7900] transition-colors">Home</a>
-            <a href="#about" className="hover:text-[#FF7900] transition-colors">About</a>
-            <a href="#projects" className="hover:text-[#FF7900] transition-colors">Projects</a>
-            <a href="#skills" className="hover:text-[#FF7900] transition-colors">Skills</a>
-            <a href="#contact" className="hover:text-[#FF7900] transition-colors">Contact</a>
+          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-black/70">
+            <a href="#home" onClick={handleNavLinkClick} className="hover:text-[#FF7900] transition-colors">Home</a>
+            <a href="#about" onClick={handleNavLinkClick} className="hover:text-[#FF7900] transition-colors">About</a>
+            <a href="#projects" onClick={handleNavLinkClick} className="hover:text-[#FF7900] transition-colors">Projects</a>
+            <a href="#skills" onClick={handleNavLinkClick} className="hover:text-[#FF7900] transition-colors">Skills</a>
+            <a href="#contact" onClick={handleNavLinkClick} className="hover:text-[#FF7900] transition-colors">Contact</a>
           </nav>
+          
+          {/* Mobile menu button */}
+          <button 
+            onClick={toggleMobileMenu}
+            className="lg:hidden p-2 text-black/70 hover:text-[#FF7900] transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setFormStart(Date.now()); }}
-            className="inline-flex items-center gap-2 rounded-full bg-[#FF7900] px-6 py-2.5 text-white text-sm font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 hover:scale-105"
+            className="hidden lg:inline-flex items-center gap-2 rounded-full bg-[#FF7900] px-6 py-2.5 text-white text-sm font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 hover:scale-105"
           >
             Work With Me
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,22 +155,84 @@ export default function Home() {
             </svg>
           </a>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-black/[.08] shadow-lg">
+            <nav className="px-6 py-4 space-y-4">
+              <a 
+                href="#home" 
+                onClick={handleNavLinkClick}
+                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF7900] transition-colors"
+              >
+                Home
+              </a>
+              <a 
+                href="#about" 
+                onClick={handleNavLinkClick}
+                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF7900] transition-colors"
+              >
+                About
+              </a>
+              <a 
+                href="#projects" 
+                onClick={handleNavLinkClick}
+                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF7900] transition-colors"
+              >
+                Projects
+              </a>
+              <a 
+                href="#skills" 
+                onClick={handleNavLinkClick}
+                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF7900] transition-colors"
+              >
+                Skills
+              </a>
+              <a 
+                href="#contact" 
+                onClick={handleNavLinkClick}
+                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF7900] transition-colors"
+              >
+                Contact
+              </a>
+              
+              {/* Mobile Work With Me Button */}
+              <div className="pt-4 border-t border-black/[.08]">
+                <a
+                  href="#contact"
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    setIsModalOpen(true); 
+                    setFormStart(Date.now());
+                    closeMobileMenu();
+                  }}
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF7900] px-6 py-3 text-white text-base font-semibold shadow-lg hover:bg-[#e66d00] hover:shadow-xl transition-all duration-200 w-full"
+                >
+                  Work With Me
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero */}
-      <section id="home" className="w-full scroll-mt-24 md:scroll-mt-28">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
-          <div className="w-full max-w-2xl mx-auto text-center md:text-left order-2 md:order-1">
+      <section id="home" className="w-full scroll-mt-20 md:scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+          <div className="w-full max-w-2xl mx-auto text-center lg:text-left order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
               Full-stack Web Developer
             </div>
-            <h1 className="text-4xl md:text-6xl md:w-[600px] font-bold tracking-tight leading-[1.1]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl ipad-hero-text font-bold tracking-tight leading-[1.1] md:w-4xl">
               I Build <span className="text-[#FF7900] relative">
                 Scalable
                 <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF7900] to-[#e66d00] rounded-full"></div>
               </span> Web
               Applications That
-              <br className="hidden md:block" />
+              <br className="hidden lg:block" />
               <span className="text-[#FF7900] relative"> Solve
                 <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF7900] to-[#e66d00] rounded-full"></div>
               </span> Real Problems.
@@ -153,7 +265,7 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-            <div className="mt-8 sm:mt-12 flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 opacity-80">
+            <div className="mt-8 sm:mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 opacity-80">
               <Image src="/assets/zap.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
               <Image src="/assets/tesda.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
               <Image src="/assets/bpc.png" alt="" width={80} height={80} className="rounded-full w-12 h-12 md:w-16 md:h-16" />
@@ -161,7 +273,7 @@ export default function Home() {
             </div>
           </div>
 
-           <div className="relative rounded-3xl overflow-hidden rounded-full w-[320px] h-[400px] md:w-[420px] md:h-[600px] place-self-center md:place-self-end shadow-2xl bg-gradient-to-br from-[#FF7900] to-[#e66d00] order-1 md:order-2 hover:scale-105 transition-transform duration-300">
+           <div className="relative rounded-3xl overflow-hidden rounded-full w-[280px] h-[350px] md:w-[320px] md:h-[400px] lg:w-[420px] lg:h-[600px] ipad-hero-image place-self-center lg:place-self-end shadow-2xl bg-gradient-to-br from-[#FF7900] to-[#e66d00] order-1 lg:order-2 hover:scale-105 transition-transform duration-300">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
               <Image
                 src="/assets/me.png"
@@ -175,7 +287,7 @@ export default function Home() {
       </section>
 
       {/* USP */}
-      <section className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-24 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-20 lg:py-24 ipad-section-padding relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
@@ -187,7 +299,7 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
             Why Choose One Expert Over Many?
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl ipad-text-size font-bold leading-tight">
             Why Struggle With Multiple Developers<br />
             <span className="text-[#FF7900]">When One Expert Can Handle It All?</span>
           </h2>
@@ -196,7 +308,7 @@ export default function Home() {
             I handle your project end-to-end — from UI design to database architecture.
           </p>
 
-          <div className="mt-12 grid sm:grid-cols-2 gap-8 text-left">
+          <div className="mt-12 grid sm:grid-cols-2 gap-6 md:gap-8 ipad-grid-gap text-left">
             {[
               {
                 title: "End-to-End Development",
@@ -259,13 +371,13 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-16 md:py-24 scroll-mt-12 md:scroll-mt-14">
+      <section id="projects" className="py-16 md:py-20 lg:py-24 ipad-section-padding scroll-mt-20 md:scroll-mt-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
               Featured Projects
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl ipad-text-size font-bold leading-tight">
               Solutions I&rsquo;ve Built —<br />
               <span className="text-[#FF7900]">Tailored for Real People, Real Problems</span>
             </h2>
@@ -355,7 +467,7 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-24 scroll-mt-14 md:scroll-mt-18 relative overflow-hidden">
+      <section id="skills" className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-20 lg:py-24 ipad-section-padding scroll-mt-20 md:scroll-mt-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 30% 20%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
@@ -367,12 +479,12 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
             Tech Stack
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight">The Tools I Use to Build Your<br />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl ipad-text-size font-bold leading-tight">The Tools I Use to Build Your<br />
             <span className="text-[#FF7900]">Future-Ready Web App</span>
           </h2>
-          <p className="mt-6 text-lg text-black/70 max-w-2xl mx-auto">I build scalable solutions using modern technologies trusted by startups, schools, and enterprises.</p>
+          <p className="mt-6 text-lg text-black/70 max-w-xl mx-auto">I build scalable solutions using modern technologies trusted by startups, schools, and enterprises.</p>
           
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 ipad-grid-gap">
             {[
               { name: "Next.js", image: "/assets/nextjs.png", category: "Frontend" },
               { name: "Vue.js", image: "/assets/vuejs.png", category: "Frontend" },
@@ -420,9 +532,9 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-16 md:py-24 scroll-mt-12 md:scroll-mt-14">
-        <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 items-center">
-          <div className="relative rounded-full overflow-hidden w-[300px] h-[400px] md:w-[380px] md:h-[530px] place-self-center md:place-self-start shadow-lg bg-[#FF7900]">
+      <section id="about" className="py-16 md:py-20 lg:py-24 ipad-section-padding scroll-mt-20 md:scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 items-center gap-8 lg:gap-12">
+          <div className="relative rounded-full overflow-hidden w-[280px] h-[370px] md:w-[320px] md:h-[420px] lg:w-[380px] lg:h-[530px] place-self-center lg:place-self-start shadow-lg bg-[#FF7900]">
               <Image
                 src="/assets/me.png"
                 alt="Portrait"
@@ -430,7 +542,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="w-full max-w-2xl md:justify-self-end mx-auto text-left mt-10 md:mt-0">
+            <div className="w-full max-w-2xl lg:justify-self-end mx-auto text-left mt-10 lg:mt-0">
             <h2 className="text-3xl md:text-4xl font-semibold">Meet Abel, Your Full-Stack Partner</h2>
             <p className="mt-10 text-black/70 font-semibold">Hi, I’m Abel</p>
             <p className="mt-2 text-black/70">
@@ -439,13 +551,13 @@ export default function Home() {
             <p className="mt-2 text-black/70">
               Whether you need a modern school website, a business app, or a custom digital solution, I’ll be your one-stop partner — from concept to launch.
             </p>
-            <div className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 opacity-80">
+            <div className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 opacity-80">
               <Image src="/assets/zap.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
               <Image src="/assets/tesda.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
               <Image src="/assets/bpc.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
               <Image src="/assets/dswd.png" alt="" width={40} height={40} className="rounded-full w-12 h-12 md:w-14 md:h-14" />
             </div>
-            <div className="mt-2 text-center md:text-left">
+            <div className="mt-2 text-center lg:text-left">
               <a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
@@ -485,12 +597,12 @@ export default function Home() {
       <footer className="py-10">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <nav className="flex items-center justify-center gap-6 text-sm text-black/70">
-            <a href="#about" className="hover:text-black">About</a>
-            <a href="#projects" className="hover:text-black">Projects</a>
-            <a href="#skills" className="hover:text-black">Skills</a>
-            <a href="#contact" className="hover:text-black">Contact</a>
+            <a href="#home" onClick={handleNavLinkClick} className="hover:text-black">Home</a>
+            <a href="#about" onClick={handleNavLinkClick} className="hover:text-black">About</a>
+            <a href="#projects" onClick={handleNavLinkClick} className="hover:text-black">Projects</a>
+            <a href="#skills" onClick={handleNavLinkClick} className="hover:text-black">Skills</a>
+            <a href="#contact" onClick={handleNavLinkClick} className="hover:text-black">Contact</a>
           </nav>
-          <div className="mt-6 h-[2px] bg-[#FF7900]/80 rounded-full" />
           <p className="mt-6 text-xs text-black/60">© {new Date().getFullYear()} Abel Palero — Full-stack Web Developer.</p>
         </div>
       </footer>
