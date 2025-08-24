@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with Next.js 15, TypeScript, TailwindCSS, and ShadCN UI.
 
-## 🚀 Features
+## Features
 
 - **Modern Tech Stack**: Built with Next.js 15, React 19, and TypeScript
 - **Responsive Design**: Mobile-first approach with TailwindCSS
@@ -11,7 +11,7 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, Tailwi
 - **Accessibility**: ARIA labels, semantic HTML, and keyboard navigation
 - **Contact Form**: Integrated with Supabase for secure message handling
 
-## 🏗️ Architecture
+## Architecture
 
 ### Folder Structure
 
@@ -64,7 +64,7 @@ my-portfolio/
 - **Performance**: Server components by default, client components when needed
 - **Maintainability**: Clean separation of concerns and consistent patterns
 
-## 🛠️ Technologies
+## Technologies
 
 - **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
@@ -75,7 +75,7 @@ my-portfolio/
 - **Icons**: Custom SVG icon component
 - **Deployment**: Vercel-ready
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Install dependencies**:
    ```bash
@@ -97,7 +97,7 @@ my-portfolio/
    npm start
    ```
 
-## 📱 Responsive Design
+##  Responsive Design
 
 The website is built with a mobile-first approach using TailwindCSS responsive utilities:
 
@@ -105,7 +105,7 @@ The website is built with a mobile-first approach using TailwindCSS responsive u
 - **Tablet**: Adaptive layouts for medium screens
 - **Desktop**: Full-featured experience with side-by-side layouts
 
-## ♿ Accessibility Features
+## Accessibility Features
 
 - Semantic HTML structure
 - ARIA labels for interactive elements
@@ -113,7 +113,7 @@ The website is built with a mobile-first approach using TailwindCSS responsive u
 - Focus management for modal dialogs
 - Screen reader friendly content
 
-## 🔧 Customization
+## Customization
 
 ### Colors
 The primary brand color (`#FF7900`) is used throughout the design and can be customized in the TailwindCSS configuration.
@@ -128,10 +128,10 @@ Update the constants in `lib/constants.ts` to modify:
 ### Styling
 Modify `app/globals.css` for global style changes and use TailwindCSS utilities for component-specific styling.
 
-## 📄 License
+## License
 
 This project is private and proprietary to Abel Palero.
 
-## 🤝 Contributing
+## Contributing
 
 This is a personal portfolio website. For business inquiries, please use the contact form on the website.
