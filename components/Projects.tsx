@@ -31,13 +31,21 @@ export function Projects({ onContactClick }: ProjectsProps) {
               {/* Project Image */}
               <div className="group relative rounded-2xl overflow-hidden shadow-lg border hover:shadow-2xl transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#FF7900]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <Image
-                  src={project.image}
-                  alt={`${project.title} - ${project.subtitle}`}
-                  width={1200}
-                  height={800}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
+                <a 
+                  href={project.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block cursor-pointer"
+                  aria-label={`Visit ${project.title} project`}
+                >
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} - ${project.subtitle}`}
+                    width={1200}
+                    height={800}
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </a>
                 <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 rounded-full text-sm font-semibold text-[#FF7900]">
                   {project.category}
                 </div>

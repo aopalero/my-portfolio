@@ -30,13 +30,14 @@ export const PROJECTS = [
   {
     id: "haosrai",
     title: "HAOSRAI",
-    subtitle: "School Website",
+    subtitle: "(Ongoing) School Website",
     image: "/assets/haosrai.png",
     category: "Educational",
     challenge: "The school needed a modern website to showcase its programs and admissions.",
     solution: "Designed and developed a clean, scalable platform with Next.js + Supabase.",
     result: "A professional online presence that attracts students and parents.",
-    imageFirst: false
+    imageFirst: false,
+    url: "#"
   },
   {
     id: "verjann",
@@ -47,7 +48,8 @@ export const PROJECTS = [
     challenge: "The couple wanted a stylish, interactive digital invitation.",
     solution: "Custom wedding site with RSVP, countdown, and guest info.",
     result: "Guests had a smooth, engaging experience — all in one place.",
-    imageFirst: true
+    imageFirst: true,
+    url: "https://verj-ann-wedding-invitation.vercel.app"
   }
 ] as const;
 
