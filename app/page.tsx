@@ -112,7 +112,6 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
           <div className="w-full max-w-2xl mx-auto text-center md:text-left order-2 md:order-1">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
-              <span className="w-2 h-2 bg-[#FF7900] rounded-full animate-pulse"></span>
               Full-stack Web Developer
             </div>
             <h1 className="text-4xl md:text-6xl md:w-[600px] font-bold tracking-tight leading-[1.1]">
@@ -186,9 +185,6 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-5xl px-6 text-center relative">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-            </svg>
             Why Choose One Expert Over Many?
           </div>
           <h2 className="text-3xl md:text-5xl font-bold leading-tight">
@@ -205,26 +201,42 @@ export default function Home() {
               {
                 title: "End-to-End Development",
                 desc: "One developer, complete solution.",
-                icon: "⚡"
+                icon: (
+                  <svg className="w-6 h-6 text-[#FF7900]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                  </svg>
+                )
               },
               {
                 title: "Adaptable Experience", 
                 desc: "From government to schools to personal projects.",
-                icon: "🎯"
+                icon: (
+                  <svg className="w-6 h-6 text-[#FF7900]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                )
               },
               {
                 title: "Modern Tech Stack",
                 desc: "Next.js, Vue.js, Laravel, Supabase, TailwindCSS.",
-                icon: "🚀"
+                icon: (
+                  <svg className="w-6 h-6 text-[#FF7900]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                )
               },
               {
                 title: "Scalable & Reliable",
                 desc: "Code built to grow with your needs.",
-                icon: "📈"
+                icon: (
+                  <svg className="w-6 h-6 text-[#FF7900]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                )
               }
             ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 p-6 bg-white/60 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-white/40">
-                  <div className="text-2xl">{item.icon}</div>
+                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[#FF7900]/10 rounded-lg">{item.icon}</div>
                   <div>
                     <h3 className="font-semibold text-black/90 mb-1">{item.title}</h3>
                     <p className="text-black/70 text-sm">{item.desc}</p>
@@ -251,9 +263,6 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1V8z" clipRule="evenodd" />
-              </svg>
               Featured Projects
             </div>
             <h2 className="text-3xl md:text-5xl font-bold leading-tight">
@@ -356,9 +365,6 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-5xl px-6 text-center relative">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
             Tech Stack
           </div>
           <h2 className="text-3xl md:text-5xl font-bold leading-tight">The Tools I Use to Build Your<br />
