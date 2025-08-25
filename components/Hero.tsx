@@ -26,7 +26,7 @@ export function Hero({ onContactClick }: HeroProps) {
             Full-stack Web Developer
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] md:w-4xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.2] md:w-4xl">
             I Build{" "}
             <span className="text-[#FF7900] relative">
               Scalable
