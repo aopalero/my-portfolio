@@ -28,25 +28,25 @@ export const TECHNOLOGIES = [
 
 export const PROJECTS = [
   {
-    id: "haosrai",
-    title: "HAOSRAI",
-    subtitle: "(Ongoing) School Website",
-    image: "/assets/haosrai.png",
-    category: "Educational",
-    challenge: "The school needed a modern website to showcase its programs and admissions.",
-    solution: "Designed and developed a clean, scalable platform with Next.js + Supabase.",
-    result: "A professional online presence that attracts students and parents.",
+    id: "hirayatripsph",
+    title: "HirayaTripsPH",
+    subtitle: "Travel Agency Website",
+    image: "/assets/hirayatripsph.png",
+    category: "Travel",
+    challenge: "The travel agency needed a modern website to showcase its services and bookings.",
+    solution: "Designed and developed a clean, scalable platform with Next.js, TailwindCSS, and Shadcn.",
+    result: "Increased online visibility and streamlined booking process for travel services.",
     imageFirst: false,
-    url: "#"
+    url: "https://hirayatripsph-gamma.vercel.app"
   },
   {
     id: "verjann",
     title: "Verj & Ann Wedding Website",
-    subtitle: "Wedding Site",
+    subtitle: "Wedding Invitation Site",
     image: "/assets/verjann.png",
     category: "Personal",
     challenge: "The couple wanted a stylish, interactive digital invitation.",
-    solution: "Custom wedding site with RSVP, countdown, and guest info.",
+    solution: "Custom wedding site with RSVP, countdown, and guest info using Next.js, TailwindCSS, and Shadcn.",
     result: "Guests had a smooth, engaging experience — all in one place.",
     imageFirst: true,
     url: "https://verj-ann-wedding-invitation.vercel.app"
