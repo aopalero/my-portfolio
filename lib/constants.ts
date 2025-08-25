@@ -41,8 +41,8 @@ export const PROJECTS = [
   },
   {
     id: "verjann",
-    title: "Verj & Ann Wedding Website",
-    subtitle: "Wedding Invitation Site",
+    title: "Verj & Ann",
+    subtitle: "Wedding Invitation Website",
     image: "/assets/verjann.png",
     category: "Personal",
     challenge: "The couple wanted a stylish, interactive digital invitation.",
