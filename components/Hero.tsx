@@ -42,9 +42,7 @@ export function Hero({ onContactClick }: HeroProps) {
           </h1>
           
           <p className="mt-6 text-lg text-black/70 max-w-xl leading-relaxed">
-            From schools and organizations to businesses and personal projects, I
-            deliver end-to-end solutions — frontend, backend, and everything in
-            between. No need to hire multiple developers. With me, you get it all.
+          Complete full-stack solutions for schools, organizations, businesses, and personal projects. Frontend, backend, and everything in between — delivered by one developer.
           </p>
           
           {/* CTA Buttons */}
