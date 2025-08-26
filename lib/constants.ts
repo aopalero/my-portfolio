@@ -28,6 +28,30 @@ export const TECHNOLOGIES = [
 
 export const PROJECTS = [
   {
+    id: "lorren",
+    title: "Lorren",
+    subtitle: "Portfolio Website",
+    image: "/assets/lorren.png",
+    category: "Portfolio",
+    challenge: "The client wanted a modern, clean portfolio website to showcase their work.",
+    solution: "Designed and developed a clean, scalable platform with Next.js, TailwindCSS, and Shadcn.",
+    result: "Delivered a modern, professional portfolio that effectively showcases the client's work and personal brand.",
+    imageFirst: true,
+    url: "https://lorren-smm.vercel.app"
+  },
+  {
+    id: "verjann",
+    title: "Verj & Ann",
+    subtitle: "Wedding Invitation Website",
+    image: "/assets/verjann.png",
+    category: "Wedding",
+    challenge: "The couple wanted a stylish, interactive digital invitation.",
+    solution: "Custom wedding site with RSVP, countdown, and guest info using Next.js, TailwindCSS, and Shadcn.",
+    result: "Guests had a smooth, engaging experience — all in one place.",
+    imageFirst: false,
+    url: "https://verj-ann-wedding-invitation.vercel.app"
+  },
+  {
     id: "hirayatripsph",
     title: "HirayaTripsPH",
     subtitle: "Travel Agency Website",
@@ -36,21 +60,9 @@ export const PROJECTS = [
     challenge: "The travel agency needed a modern website to showcase its services and bookings.",
     solution: "Designed and developed a clean, scalable platform with Next.js, TailwindCSS, and Shadcn.",
     result: "Increased online visibility and streamlined booking process for travel services.",
-    imageFirst: false,
+    imageFirst: true,
     url: "https://hirayatripsph-gamma.vercel.app"
   },
-  {
-    id: "verjann",
-    title: "Verj & Ann",
-    subtitle: "Wedding Invitation Website",
-    image: "/assets/verjann.png",
-    category: "Personal",
-    challenge: "The couple wanted a stylish, interactive digital invitation.",
-    solution: "Custom wedding site with RSVP, countdown, and guest info using Next.js, TailwindCSS, and Shadcn.",
-    result: "Guests had a smooth, engaging experience — all in one place.",
-    imageFirst: true,
-    url: "https://verj-ann-wedding-invitation.vercel.app"
-  }
 ] as const;
 
 export const BENEFITS = [
