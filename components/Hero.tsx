@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { CLIENT_LOGOS } from "@/lib/constants";
 
 interface HeroProps {
   onContactClick: () => void;
