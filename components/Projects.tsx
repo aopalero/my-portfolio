@@ -15,12 +15,12 @@ export function Projects({ onContactClick }: ProjectsProps) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF014F]/10 text-[#FF014F] text-sm font-semibold mb-6">
             Featured Projects
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight px-4">
             Solutions I&rsquo;ve Built —<br />
-            <span className="text-[#FF7900]">Tailored for Real People, Real Problems</span>
+            <span className="text-[#FF014F]">Tailored for Real People, Real Problems</span>
           </h2>
         </div>
 
@@ -30,7 +30,7 @@ export function Projects({ onContactClick }: ProjectsProps) {
             <div key={project.id} className={`grid gap-8 md:gap-10 items-center ${project.imageFirst ? 'md:grid-cols-2 md:[&>*:first-child]:order-2' : 'md:grid-cols-2'}`}>
               {/* Project Image */}
               <div className="group relative rounded-2xl overflow-hidden shadow-lg border hover:shadow-2xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF7900]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF014F]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <a 
                   href={project.url} 
                   target="_blank" 
@@ -47,7 +47,7 @@ export function Projects({ onContactClick }: ProjectsProps) {
                     className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover pointer-events-none"
                   />
                 </a>
-                <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 rounded-full text-sm font-semibold text-[#FF7900]">
+                <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 rounded-full text-sm font-semibold text-[#FF014F]">
                   {project.category}
                 </div>
               </div>
@@ -56,7 +56,7 @@ export function Projects({ onContactClick }: ProjectsProps) {
               <div className="space-y-4 md:space-y-6 px-2 sm:px-0">
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-black/90 mb-2">{project.title}</h3>
-                  <p className="text-[#FF7900] font-semibold text-sm mb-3 md:mb-4">{project.subtitle}</p>
+                  <p className="text-[#FF014F] font-semibold text-sm mb-3 md:mb-4">{project.subtitle}</p>
                 </div>
                 
                 <div className="space-y-3">

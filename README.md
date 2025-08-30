@@ -116,7 +116,7 @@ The website is built with a mobile-first approach using TailwindCSS responsive u
 ## Customization
 
 ### Colors
-The primary brand color (`#FF7900`) is used throughout the design and can be customized in the TailwindCSS configuration.
+The primary brand color (`#FF014F`) is used throughout the design and can be customized in the TailwindCSS configuration.
 
 ### Content
 Update the constants in `lib/constants.ts` to modify:

@@ -48,7 +48,7 @@ export function Header({ onContactClick }: HeaderProps) {
           onClick={handleNavLinkClick} 
           className="flex items-center text-2xl font-bold tracking-tight hover:scale-105 transition-transform"
         >
-          <span className="text-[#FF7900]">ao</span>
+          <span className="text-[#FF014F]">ao</span>
           <span className="text-black">palero</span>
         </a>
 
@@ -59,7 +59,7 @@ export function Header({ onContactClick }: HeaderProps) {
               key={link.href}
               href={link.href}
               onClick={handleNavLinkClick}
-              className="hover:text-[#FF7900] transition-colors"
+              className="hover:text-[#FF014F] transition-colors"
             >
               {link.label}
             </a>
@@ -69,7 +69,7 @@ export function Header({ onContactClick }: HeaderProps) {
         {/* Mobile Menu Button */}
         <button 
           onClick={toggleMobileMenu}
-          className="lg:hidden p-2 text-black/70 hover:text-[#FF7900] transition-colors"
+                      className="lg:hidden p-2 text-black/70 hover:text-[#FF014F] transition-colors"
           aria-label="Toggle mobile menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,7 +103,7 @@ export function Header({ onContactClick }: HeaderProps) {
                 key={link.href}
                 href={link.href} 
                 onClick={handleNavLinkClick}
-                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF7900] transition-colors"
+                className="block py-2 text-base font-medium text-black/70 hover:text-[#FF014F] transition-colors"
               >
                 {link.label}
               </a>

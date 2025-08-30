@@ -14,9 +14,9 @@ export function About({ onContactClick }: AboutProps) {
     <section id="about" className="py-16 md:py-20 lg:py-24 scroll-mt-20 md:scroll-mt-24">
       <div className="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 items-center gap-8 lg:gap-12">
         {/* Portrait Image */}
-        <div className="relative rounded-full overflow-hidden w-[280px] h-[370px] md:w-[320px] md:h-[420px] lg:w-[380px] lg:h-[530px] place-self-center lg:place-self-start shadow-lg bg-[#FF7900]">
+        <div className="relative rounded-full overflow-hidden w-[280px] h-[370px] md:w-[320px] md:h-[420px] lg:w-[450px] lg:h-[530px] place-self-center lg:place-self-start">
           <Image
-            src="/assets/me.png"
+            src="/assets/hero.png"
             alt="Abel Palero - Full-stack Web Developer"
             fill
             className="object-cover"

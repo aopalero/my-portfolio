@@ -9,7 +9,7 @@ interface ContactCTAProps {
  */
 export function ContactCTA({ onContactClick }: ContactCTAProps) {
   return (
-    <section id="contact" className="bg-[#FF7900] text-white py-16 md:py-20">
+          <section id="contact" className="bg-[#FF014F] text-white py-16 md:py-20">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold">
           Let&rsquo;s Build Something Great Together

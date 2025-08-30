@@ -11,27 +11,27 @@ interface USPProps {
  */
 export function USP({ onContactClick }: USPProps) {
   return (
-    <section className="bg-gradient-to-br from-[#ffe9d6] to-[#fff5ee] py-16 md:py-20 lg:py-24 relative overflow-hidden">
+    <section className="bg-gradient-to-br from-[#FF014F]/5 to-[#FF014F]/10 py-16 md:py-20 lg:py-24 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div 
           className="absolute inset-0" 
           style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
-                              radial-gradient(circle at 80% 20%, rgba(255, 121, 0, 0.1) 0%, transparent 50%), 
-                              radial-gradient(circle at 40% 80%, rgba(255, 121, 0, 0.1) 0%, transparent 50%)`
+            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255, 1, 79, 0.1) 0%, transparent 50%), 
+                              radial-gradient(circle at 80% 20%, rgba(255, 1, 79, 0.1) 0%, transparent 50%), 
+                              radial-gradient(circle at 40% 80%, rgba(255, 1, 79, 0.1) 0%, transparent 50%)`
           }}
         />
       </div>
       
       <div className="mx-auto max-w-5xl px-6 text-center relative">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF7900] text-sm font-semibold mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 text-[#FF014F] text-sm font-semibold mb-6">
           Why Choose One Expert Over Many?
         </div>
         
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
           Why Struggle With Multiple Developers<br />
-          <span className="text-[#FF7900]">When One Expert Can Handle It All?</span>
+                      <span className="text-[#FF014F]">When One Expert Can Handle It All?</span>
         </h2>
         
         <p className="mt-6 text-lg text-black/70 max-w-3xl mx-auto leading-relaxed">
@@ -46,7 +46,7 @@ export function USP({ onContactClick }: USPProps) {
               key={benefit.title} 
               className="flex items-start gap-4 p-6 bg-white/60 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-white/40"
             >
-              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[#FF7900]/10 rounded-lg">
+              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[#FF014F]/10 rounded-lg">
                 <Icon name={benefit.icon} />
               </div>
               <div>

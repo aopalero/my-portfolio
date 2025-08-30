@@ -72,7 +72,7 @@ export function Icon({ name, ...props }: IconProps) {
 
   return (
     <svg 
-      className="w-6 h-6 text-[#FF7900]" 
+              className="w-6 h-6 text-[#FF014F]" 
       fill="currentColor" 
       viewBox="0 0 20 20"
       {...props}

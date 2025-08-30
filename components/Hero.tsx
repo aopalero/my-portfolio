@@ -18,25 +18,25 @@ export function Hero({ onContactClick }: HeroProps) {
   };
 
   return (
-    <section id="home" className="w-full scroll-mt-20 md:scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+    <section id="home" className="w-full scroll-mt-20 md:scroll-mt-24 pt-8 md:pt-0">
+      <div className="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
         {/* Content */}
-        <div className="w-full max-w-2xl mx-auto text-center lg:text-left order-2 lg:order-1">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7900]/10 text-[#FF7900] text-sm font-semibold mb-6">
+        <div className="w-full max-w-2xl mx-auto text-center lg:text-left order-1 lg:order-1">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF014F]/10 text-[#FF014F] text-sm font-semibold mb-6">
             Full-stack Web Developer
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.2] md:w-4xl">
             I Build{" "}
-            <span className="text-[#FF7900] relative">
+            <span className="text-[#FF014F] relative">
               Scalable
-              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF7900] to-[#e66d00] rounded-full"></div>
+              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF014F] to-[#e60047] rounded-full"></div>
             </span>{" "}
             Web Applications That{" "}
             <br className="hidden lg:block" />
-            <span className="text-[#FF7900] relative">
+            <span className="text-[#FF014F] relative">
               Solve
-              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF7900] to-[#e66d00] rounded-full"></div>
+              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF014F] to-[#e60047] rounded-full"></div>
             </span>{" "}
             Real Problems.
           </h1>
@@ -71,26 +71,14 @@ export function Hero({ onContactClick }: HeroProps) {
             </Button>
           </div>
           
-          {/* Client Logos */}
-          <div className="mt-8 sm:mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 opacity-80">
-            {CLIENT_LOGOS.map((logo) => (
-              <Image 
-                key={logo.alt}
-                src={logo.src} 
-                alt={logo.alt} 
-                width={80} 
-                height={80} 
-                className="rounded-full w-12 h-12 md:w-16 md:h-16" 
-              />
-            ))}
-          </div>
+
         </div>
 
         {/* Hero Image */}
-        <div className="relative rounded-3xl overflow-hidden rounded-full w-[280px] h-[350px] md:w-[320px] md:h-[400px] lg:w-[420px] lg:h-[600px] place-self-center lg:place-self-end shadow-2xl bg-gradient-to-br from-[#FF7900] to-[#e66d00] order-1 lg:order-2 hover:scale-105 transition-transform duration-300">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+        <div className="relative w-[280px] h-[350px] md:w-[320px] md:h-[400px] lg:w-[460px] lg:h-[600px] place-self-center lg:place-self-end order-2 lg:order-2">
+          <div className=""></div>
           <Image
-            src="/assets/me.png"
+            src="/assets/hero.png"
             alt="Abel Palero - Full-stack Web Developer"
             fill
             className="object-cover z-0"

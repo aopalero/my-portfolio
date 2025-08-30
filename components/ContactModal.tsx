@@ -112,7 +112,7 @@ export function ContactModal({ isOpen, onClose, formStart }: ContactModalProps) 
               type="text"
               value={formName}
               onChange={(e) => setFormName(e.target.value)}
-              className="mt-1 w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF7900]/50 transition-all"
+              className="mt-1 w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF014F]/50 transition-all"
               placeholder="Juan Dela Cruz"
               required
             />
@@ -132,7 +132,7 @@ export function ContactModal({ isOpen, onClose, formStart }: ContactModalProps) 
               type="email"
               value={formEmail}
               onChange={(e) => setFormEmail(e.target.value)}
-              className="mt-1 w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF7900]/50 transition-all"
+              className="mt-1 w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-[#FF014F]/50 transition-all"
               placeholder="you@example.com"
               required
             />
@@ -145,7 +145,7 @@ export function ContactModal({ isOpen, onClose, formStart }: ContactModalProps) 
             <textarea
               value={formMessage}
               onChange={(e) => setFormMessage(e.target.value)}
-              className="mt-1 w-full rounded-lg border px-3 py-2 min-h-28 outline-none focus:ring-2 focus:ring-[#FF7900]/50 transition-all"
+              className="mt-1 w-full rounded-lg border px-3 py-2 min-h-28 outline-none focus:ring-2 focus:ring-[#FF014F]/50 transition-all"
               placeholder="Briefly describe your project goals, timeline, and budget."
               required
             />
@@ -163,7 +163,7 @@ export function ContactModal({ isOpen, onClose, formStart }: ContactModalProps) 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center rounded-full bg-[#FF7900] px-6 py-2 text-sm font-medium shadow-sm hover:bg-[#e66d00] disabled:opacity-60 disabled:cursor-not-allowed transition-all"
+              className="inline-flex items-center rounded-full bg-[#FF014F] text-white px-6 py-2 text-sm font-medium shadow-sm hover:bg-[#e60047] disabled:opacity-60 disabled:cursor-not-allowed transition-all"
             >
               {isSubmitting ? "Sending..." : "Send"}
             </button>
